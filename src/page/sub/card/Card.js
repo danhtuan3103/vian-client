@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import uniqid from 'uniqid';
 
 import { useContext } from 'react';
 import { contextUser } from '../../../App';
@@ -35,11 +34,6 @@ function CardBlock({ item, grid }) {
     const handleClickDetailPage = () => {
         navigate('/shop/' + item._id);
     };
-
-    const handleBuyButton = () => {
-        navigate('/' + item._id + '/order');
-    };
-
     const handleFavorite = () => {
         if (user) {
             const isAdded = favorites.find((favorite) => item._id === favorite._id);

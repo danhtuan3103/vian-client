@@ -1,7 +1,6 @@
 import style from './Login.module.css';
 import clsx from 'clsx';
 
-import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,7 +15,7 @@ import axios from 'axios';
 
 import { useState, useContext } from 'react';
 import { styled } from '@mui/material/styles';
-import { contextUser } from '~/App';
+import { contextUser } from '../../App.js';
 
 import Cookies from 'universal-cookie';
 
