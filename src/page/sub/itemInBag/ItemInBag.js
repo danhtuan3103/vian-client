@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import style from './ItemInBag.module.css';
 import FormControl from '@mui/material/FormControl';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';

@@ -1,7 +1,6 @@
 import style from './Favorite.module.css';
 import clsx from 'clsx';
 
-import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useContext } from 'react';
 import { contextUser } from '../../../App';
 
@@ -47,10 +45,6 @@ const CardBlock = ({ user, item, favorites, setFavorites }) => {
     let navigate = useNavigate();
     const handleClickDetailPage = () => {
         navigate('/shop/' + item._id);
-    };
-
-    const handleBuyButton = () => {
-        // navigate("/" + item._id + "/order");
     };
 
     const hanleDelete = () => {

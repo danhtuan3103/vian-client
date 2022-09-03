@@ -1,7 +1,5 @@
 import style from './Shop.module.css';
 import clsx from 'clsx';
-import ads3 from '../../images/ads3.jpeg';
-import Ads from '../sub/ads/Ads';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import SubLink from '../subLink/SubLink';
@@ -11,9 +9,6 @@ import Slider from '../sub/slider/Slider';
 import CardBlock from '../sub/card/Card';
 
 function Shop() {
-    const text =
-        'I have always been a huge fan of the the American School painters of the 1920s and \
-    30s and I was particularly inspired by Thomas Hart Benton and Grant Wood. I am also drawn to the ';
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {

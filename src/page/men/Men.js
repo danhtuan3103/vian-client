@@ -1,4 +1,3 @@
-import { Link, Outlet } from 'react-router-dom';
 import style from './Men.module.css';
 import clsx from 'clsx';
 import model1 from '../../images/model1.jpeg';

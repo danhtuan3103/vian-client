@@ -1,6 +1,6 @@
 import style from './SubLink.module.css';
 import clsx from 'clsx';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function SubLink() {
     return (

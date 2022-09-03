@@ -1,13 +1,12 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import React, { lazy, useEffect, Suspense, createContext, useState } from 'react';
+import React, { useEffect, Suspense, createContext, useState } from 'react';
 import { Header } from './page/index';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
-import { ProtectedRoutes } from '~/auth/ProtectedRoutes';
+import { ProtectedRoutes } from './auth/ProtectedRoutes';
 import Loading from './page/sub/loading/Loading';
 import { publicRoutes, privateRoutes } from './routes';
-import SubLink from './page/subLink/SubLink';
 export const contextUser = createContext();
 
 const cookies = new Cookies();

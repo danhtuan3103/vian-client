@@ -1,4 +1,3 @@
-import { Link, Outlet } from 'react-router-dom';
 import style from './Women.module.css';
 import clsx from 'clsx';
 import ads from '../../images/ads.jpeg';
@@ -29,7 +28,6 @@ function Women() {
             <div className={clsx(style.listBlock)}>
                 <SubLink />
                 <div className={style.line}></div>
-                <Outlet />
             </div>
 
             <Ads value={[ads, text]}></Ads>

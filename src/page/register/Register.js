@@ -1,6 +1,5 @@
 import style from './Register.module.css';
 import clsx from 'clsx';
-import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
