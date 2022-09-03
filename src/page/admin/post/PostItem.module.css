@@ -1,0 +1,10 @@
+.inputBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputBlock > input {
+    margin: 16px 0;
+}

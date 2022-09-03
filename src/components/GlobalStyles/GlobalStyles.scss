@@ -1,0 +1,25 @@
+@import 'normalize.css';
+
+:root {
+    --green: #009a87;
+    --color-body-text: #00665e;
+    --color-accent: #f68a53;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizespeed;
+    overflow-y: overlay;
+}
+
+p {
+    font-size: 1.2rem;
+}
+// Grid

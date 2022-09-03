@@ -1,0 +1,295 @@
+.wrapper {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.nav {
+    height: 71px;
+}
+.navLink {
+    margin: 8px 0;
+}
+
+.navLink > ul {
+    height: 45.5px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navLink > ul > li {
+    padding: 0;
+}
+
+.navLink > ul > li > a {
+    text-decoration: none;
+    padding: 10px 30px;
+    color: var(--green);
+    transition: 0.4s ease-in-out;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.list > li {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.list > li > a,
+.list > li .countBag > a {
+    display: block;
+    width: 100%;
+    padding: 11px 0;
+    text-decoration: none;
+    color: var(--green);
+    outline: none;
+}
+.list > li > a:hover,
+.navLink > ul > li > a:hover {
+    color: var(--color-accent);
+    outline: none;
+}
+.Badge {
+    color: var(--green);
+    padding-right: 8px;
+}
+.Badge:hover {
+    color: var(--color-accent);
+    cursor: pointer;
+}
+
+.listCard {
+    width: 500px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    display: block;
+    height: 50px;
+}
+
+.logo > a {
+    font-family: 'Square Peg', cursive;
+    text-decoration: none;
+    color: var(--green);
+    font-size: 35px;
+    font-weight: bold;
+}
+.toolOfNav {
+}
+
+.tool {
+    list-style: none;
+    display: flex;
+    margin-top: 4px;
+}
+.tool > li {
+    padding: 0;
+}
+
+.tool > li > a {
+    padding: 10px 23px;
+}
+
+.tool > li > a:hover {
+    color: var(--color-accent);
+}
+
+/* Search */
+.tool > .searchTool {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool > .searchTool > .searchBlock {
+    display: flex;
+}
+.tool > .loginBtn {
+    flex: 1;
+}
+.tool > .card {
+    flex: 1;
+}
+.tool > .loginBtn > a,
+.card > a {
+    text-decoration: none;
+    color: var(--green);
+    transition: 0.4s ease-in-out;
+}
+.mobileNav {
+    display: none;
+    z-index: 1;
+}
+
+.searchIcon {
+    margin-top: -5px;
+    margin-left: 10px;
+    color: var(--green);
+}
+
+.searchIcon:hover {
+    color: var(--color-accent);
+    cursor: pointer;
+}
+
+.searchList {
+    margin-top: 8px;
+    display: none;
+    list-style-type: none;
+    width: 300px;
+    max-height: 500px;
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    align-self: center;
+    box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+    z-index: 99;
+}
+
+.searchList::-webkit-scrollbar {
+    width: 8px;
+    background-color: black;
+}
+
+.searchList::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+}
+.searchList::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
+.searchItem {
+    display: flex;
+    background-color: #ffff;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    width: 280px;
+    margin: 20px 8px;
+    color: #444;
+    font-weight: 300;
+    border: 1px solid #333;
+    cursor: pointer;
+}
+.searchItem:hover {
+    background-color: var(--color-accent);
+}
+
+/* ----------------- */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #3333;
+    z-index: 4;
+    cursor: pointer;
+}
+
+.active {
+    display: block;
+}
+
+.mobileNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 11;
+    margin-bottom: 20px;
+}
+
+.closeIcon {
+    width: 35px;
+    border-radius: 0;
+    color: var(--color-body-text);
+}
+
+.closeIcon:hover {
+    color: var(--color-accent);
+}
+
+/* DropDown */
+
+.dropDown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdownContent a {
+    color: var(--color-body-text);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: 0.4s ease-in-out;
+}
+
+.dropdownContent a:hover {
+    color: var(--color-accent);
+}
+
+.dropDown:hover .dropdownContent {
+    display: block;
+}
+
+.dropDown:hover .dropdownIcon {
+    color: var(--color-accent);
+}
+
+.drawerHeader {
+    width: 400px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.drawerHeader > button {
+    flex: 1;
+}
+.drawerHeader > h2 {
+    flex: 11;
+}
+
+@media (min-width: 1239px) {
+}
+
+@media (max-width: 1024px) {
+    .nav > .navLink,
+    .nav > .toolOfNav,
+    .nav > .logo {
+        display: none;
+    }
+    .mobileNav {
+        display: block;
+    }
+    .logo > a {
+        color: #ffff;
+    }
+}

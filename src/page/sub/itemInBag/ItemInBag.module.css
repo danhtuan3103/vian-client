@@ -1,0 +1,50 @@
+.tableBlock {
+    width: 500px;
+    height: 100px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--green);
+    border-top: 1px solid var(--green);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.tableBlock > a > img {
+    padding: 0;
+    margin-top: 4px;
+    width: 96px;
+}
+.key {
+    color: var(--green);
+    font-size: 1rem;
+    margin: 4px 0;
+}
+.value {
+    font-size: 0.9rem;
+    margin: 4px 0;
+}
+.toolPockets {
+    position: absolute;
+    right: 0;
+    padding: 4px 0;
+    border-left: 1px solid var(--green);
+    width: 50px;
+    height: 100px;
+    padding: 8px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toolPockets:hover {
+    background-color: var(--green);
+}
+
+.toolPockets > .deleteIcon {
+    font-size: 28px;
+}
+
+.toolPockets:hover > .deleteIcon {
+    color: red;
+}

@@ -1,0 +1,15 @@
+.wrapper {
+    margin-top: 16px;
+}
+@media (max-width: 1024px) {
+}
+.line {
+    margin-top: 16px;
+    background-color: var(--green);
+    height: 1.3px;
+    width: 100%;
+}
+
+.itemsBlock {
+    margin-top: 16px;
+}

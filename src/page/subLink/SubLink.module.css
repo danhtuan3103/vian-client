@@ -1,0 +1,23 @@
+.list {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.list > li {
+    padding: auto 0;
+}
+
+.list > li > a {
+    font-size: 13px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-transform: uppercase;
+    color: var(--green);
+    transition: 0.3s ease-in-out;
+}
+.list > li > a:hover {
+    color: var(--color-accent);
+}

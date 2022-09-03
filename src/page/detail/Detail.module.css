@@ -1,0 +1,58 @@
+.wrapper {
+    margin-top: 16px;
+}
+
+.imgBlock > .img > img {
+    width: 450px;
+    height: 450px;
+}
+
+.inputBLock,
+.tableBlock,
+.btnBlock {
+    margin: 8px 0;
+}
+
+.line {
+    margin: 8px 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--green);
+}
+.tableBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.descriptionImage {
+    background-color: var(--green);
+    margin-top: 16px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.descriptionImage > img {
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .imgBlock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inputBLock {
+        display: flex;
+        justify-content: center;
+    }
+}

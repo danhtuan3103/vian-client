@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+}
+
+
+.col {
+  text-align: center;
+  background-clip: content-box;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
