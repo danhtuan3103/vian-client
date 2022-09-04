@@ -2,7 +2,7 @@ import mainImage from './../../images/main-image.png';
 import style from './Home.module.css';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import Button from '~/components/Button';
+import Button from '../../components/Button';
 
 import { useContext } from 'react';
 import { contextUser } from '../../App';
