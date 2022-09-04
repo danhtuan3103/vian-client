@@ -1,8 +1,10 @@
 .wrapper {
     display: flex;
+    justify-content: center;
 }
 .Ads {
     display: flex;
+    margin-top: 16px;
 }
 
 .infoBlock {
@@ -28,21 +30,22 @@
 }
 
 .btnBlock {
-    margin: 12px 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 12px 0;
+    width: 100%;
 }
 
 .img {
     cursor: pointer;
 }
+
 .imgContainer {
     padding: 0 8px;
 }
 .mainImage {
+    margin-top: 16px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .imgBlock {
@@ -88,11 +91,16 @@
 @media (max-width: 1024px) {
     .wrapper {
         margin-top: 12px;
+        flex-direction: column;
     }
     .textBlock {
         text-align: center;
     }
     .mainImage {
         margin: 0;
+    }
+
+    .btnBlock > .btn {
+        min-width: 100px;
     }
 }

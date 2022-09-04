@@ -1,4 +1,5 @@
 .wrapper {
+    margin-left: 8px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -14,6 +15,7 @@
 
     + .wrapper {
         margin-left: 8px;
+        margin-top: 4px;
     }
 
     &.disabled {

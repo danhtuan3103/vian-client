@@ -28,8 +28,8 @@ function Home() {
     };
 
     return (
-        <div className={clsx(style.wrapper, 'row')}>
-            <div className={clsx('col l-6 m-12 c-12', style.Ads)}>
+        <div className={clsx(style.wrapper)}>
+            <div className={clsx(style.Ads)}>
                 <div className={clsx(style.infoBlock)}>
                     <div className={clsx(style.textBlock)}>
                         <h2>Hello !! Wellcome to VianShop</h2>
@@ -40,15 +40,20 @@ function Home() {
                     </div>
 
                     <div className={clsx(style.btnBlock)}>
-                        <Button to="/shop" primary style={{ minWidth: 160 }}>
+                        <Button className={clsx(style.btn)} to="/shop" primary style={{ minWidth: 160 }}>
                             Shopping
                         </Button>
                         {user ? (
-                            <Button outline onClick={handleLogout} style={{ minWidth: 160, padding: '11.5px' }}>
+                            <Button
+                                className={clsx(style.btn)}
+                                outline
+                                onClick={handleLogout}
+                                style={{ minWidth: 160, padding: '11.5px' }}
+                            >
                                 Logout
                             </Button>
                         ) : (
-                            <Button to="/login" outline style={{ minWidth: 160 }}>
+                            <Button className={clsx(style.btn)} to="/login" outline style={{ minWidth: 160 }}>
                                 Login
                             </Button>
                         )}
