@@ -218,8 +218,8 @@ function Order() {
                             <p>- 이메일을 통해 주문처리과정을 보내드립니다.</p>
                         </div>
                     </Accordion>
+                    <p>Adress*</p>
                     <Accordion>
-                        <p>Adress*</p>
                         <AccordionSummary id="panel1bh-header">
                             <Typography
                                 component={'span'}

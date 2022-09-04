@@ -12,6 +12,8 @@
 .btnBlock {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 4px 0;
 }
 
 .line {
@@ -28,11 +30,6 @@
 .price {
     font-size: 1.1rem;
     color: red;
-}
-.tableBlock {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .descriptionImage {
