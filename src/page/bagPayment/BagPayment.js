@@ -5,7 +5,6 @@ import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 
 import style from './BagPayment.module.css';
-import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -23,6 +22,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
 
+import Button from '../../components/Button';
+
 const CustomizedTextField = styled(TextField)`
     margin: 8px;
     width: 320px;
@@ -33,19 +34,6 @@ const CustomizedTextareaAutosize = styled(TextareaAutosize)`
     width: 320px;
 `;
 
-const CustomizedButton = styled(Button)`
-    margin: 8px;
-    color: var(--green);
-    border-color: var(--green);
-    width: 170px;
-    cursor: pointer;
-
-    :hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
-`;
 function BagPayment() {
     const context = useContext(contextUser);
     const { bag, setBag, user, setOrder } = context;
@@ -244,11 +232,9 @@ function BagPayment() {
                         <p>- 이메일을 통해 주문처리과정을 보내드립니다.</p>
                     </div>
                 </Accordion>
-                <Accordion>
+                <p>Adress*</p>
+                <Accordion sx={{ display: 'flex', justifyContent: 'center' }}>
                     <AccordionSummary id="panel1bh-header">
-                        <Typography component={'span'} sx={{ width: '33%', flexShrink: 0 }}>
-                            Adress*
-                        </Typography>
                         <Typography component={'span'} sx={{ color: 'text.secondary' }} className={style.adressBlock}>
                             <CustomizedTextField
                                 id="outlined-basic"
@@ -297,9 +283,9 @@ function BagPayment() {
                     </AccordionSummary>
                 </Accordion>
             </div>
-            <CustomizedButton variant="outlined" onClick={handleClickConfirm}>
+            <Button outline style={{ minWidth: 150, marginTop: '16px' }} onClick={handleClickConfirm}>
                 Confirm
-            </CustomizedButton>
+            </Button>
         </div>
     );
 }

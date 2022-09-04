@@ -3,7 +3,9 @@
 :root {
     --green: #009a87;
     --color-body-text: #00665e;
-    --color-accent: #f68a53;
+    --color-accent: hsl(20, 90%, 65%);
+    --white: #ffffff;
+    --font-family: 'Montserrat', sans-serif;
 }
 * {
     margin: 0;

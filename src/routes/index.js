@@ -31,6 +31,7 @@ const publicRoutes = [
 ];
 const privateRoutes = [
     { path: ':id/order', component: Order },
+    { path: ':item/:id', component: Detail },
     { path: ':id/order/payment', component: Payment },
     { path: 'my-favorite', component: Favorite },
     { path: 'admin/*', component: Admin },

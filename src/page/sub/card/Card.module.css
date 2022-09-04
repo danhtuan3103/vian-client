@@ -5,11 +5,15 @@
     align-items: center;
     cursor: pointer;
 }
-.img{
-  width: 100%;
+.img {
+    width: 100%;
 }
 
-.FavoriteButton:hover .FavoriteIcon{
-  color: var(--accent-color);
+.FavoriteButton:hover .FavoriteIcon {
+    color: var(--accent-color);
+}
 
+.noGrid {
+    width: 300px;
+    margin: 4px 8px;
 }

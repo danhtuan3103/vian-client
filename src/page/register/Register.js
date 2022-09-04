@@ -1,7 +1,6 @@
 import style from './Register.module.css';
 import clsx from 'clsx';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,6 +9,8 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
+
+import Button from './../../components/Button';
 
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -23,19 +24,6 @@ const CustomizedTextField = styled(TextField)`
     width: 320px;
 `;
 
-const CustomizedButton = styled(Button)`
-    margin: 8px;
-    color: var(--green);
-    border-color: var(--green);
-    width: 170px;
-    cursor: pointer;
-
-    :hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
-`;
 function Register() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
@@ -153,9 +141,9 @@ function Register() {
                         />
                     </FormControl>
 
-                    <CustomizedButton className={style.LoginBtn} onClick={(e) => handleRegister(e)} variant="outlined">
+                    <Button outline onClick={(e) => handleRegister(e)} style={{ minWidth: '160px' }}>
                         Register
-                    </CustomizedButton>
+                    </Button>
                     <Link to="/login">Go to login, now !</Link>
                 </div>
 

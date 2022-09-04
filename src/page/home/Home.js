@@ -2,8 +2,7 @@ import mainImage from './../../images/main-image.png';
 import style from './Home.module.css';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import Button from '~/components/Button';
 
 import { useContext } from 'react';
 import { contextUser } from '../../App';
@@ -16,20 +15,6 @@ function Home() {
 
     const user = context.user;
     const { setUser } = context;
-    const CustomizedButton = styled(Button)`
-        margin: 8px;
-        color: var(--green);
-        border-color: var(--green);
-        width: 180px;
-        cursor: pointer;
-        height: 45px;
-
-        :hover {
-            color: var(--color-accent);
-            border-color: var(--color-accent);
-            background-color: rgb(237, 227, 227, 0);
-        }
-    `;
 
     const handleLogout = async () => {
         // destroy the cookie
@@ -55,23 +40,17 @@ function Home() {
                     </div>
 
                     <div className={clsx(style.btnBlock)}>
-                        <CustomizedButton id="outlined-basic" size="small" label="Account" variant="outlined">
-                            <Link to="/shop">Shoping</Link>
-                        </CustomizedButton>
+                        <Button to="/shop" primary style={{ minWidth: 160 }}>
+                            Shopping
+                        </Button>
                         {user ? (
-                            <CustomizedButton
-                                onClick={handleLogout}
-                                id="outlined-basic"
-                                size="small"
-                                label="Account"
-                                variant="outlined"
-                            >
-                                <Link to="/login">Logout</Link>
-                            </CustomizedButton>
+                            <Button outline onClick={handleLogout} style={{ minWidth: 160, padding: '11.5px' }}>
+                                Logout
+                            </Button>
                         ) : (
-                            <CustomizedButton id="outlined-basic" size="small" label="Account" variant="outlined">
-                                <Link to="/login">Login</Link>
-                            </CustomizedButton>
+                            <Button to="/login" outline style={{ minWidth: 160 }}>
+                                Login
+                            </Button>
                         )}
                     </div>
                 </div>

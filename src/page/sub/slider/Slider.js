@@ -7,7 +7,6 @@ import CardBlock from '../card/Card';
 function Slider() {
     const [items, setItems] = useState([]);
 
-    const grid = 'col l-2 m-2 c-3';
     useEffect(() => {
         axios
             .get(`${process.env.REACT_APP_API_KEY}/item`)
@@ -23,7 +22,12 @@ function Slider() {
         <logo-slider>
             <div className={clsx(styles.slider)}>
                 {items.map((item) => {
-                    return <CardBlock key={item._id} item={item} grid={grid} />;
+                    return <CardBlock key={item._id} item={item} noGrid />;
+                })}
+            </div>
+            <div className={clsx(styles.slider)}>
+                {items.map((item) => {
+                    return <CardBlock key={item._id} item={item} noGrid />;
                 })}
             </div>
         </logo-slider>

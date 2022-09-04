@@ -59,9 +59,3 @@
     border-color: var(--color-accent);
     background-color: rgb(237, 227, 227, 0);
 }
-
-@media (max-width: 1024px) {
-    .wrapper {
-        margin-top: 76px;
-    }
-}

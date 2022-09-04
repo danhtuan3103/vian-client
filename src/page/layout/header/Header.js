@@ -1,6 +1,6 @@
 import style from './Header.module.css';
 import clsx from 'clsx';
-
+import Button from '../../../components/Button';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
@@ -19,13 +19,11 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Badge from '@mui/material/Badge';
@@ -34,6 +32,7 @@ import ItemInBag from '../../sub/itemInBag/ItemInBag';
 
 import { contextUser } from '../../../App';
 import axios from 'axios';
+import { Icon } from '@mui/material';
 
 const CustomizedTextField = styled(TextField)`
     height: 10px;
@@ -119,30 +118,33 @@ function Header() {
                 variant="persistent"
                 anchor="right"
                 open={openBag}
-                className={style.drawer}
             >
                 <div className={style.drawerHeader}>
-                    <IconButton onClick={handleDrawerCloser}>
+                    <Button secondary large style={{ minWidth: '50px' }} onClick={handleDrawerCloser}>
                         <ChevronRightIcon className={style.closeIcon} />
-                    </IconButton>
-                    <h2>Your Bag</h2>
+                    </Button>
+                    <div className={style.drawerText}>
+                        <h2>Your Bag</h2>
+                    </div>
                 </div>
+
                 {bag.length > 0 ? (
                     bag.map((item) => <ItemInBag key={item.selected_id} data={item} />)
                 ) : (
-                    <p style={{ width: 500, fontSize: '1rem', color: 'red' }}>Nothing</p>
+                    <p style={{ fontSize: '1rem', color: 'red' }}>Nothing</p>
                 )}
                 {bag.length > 0 && (
                     <div>
-                        <CustomizedButton
-                            variant="outlined"
+                        <Button
+                            primary
+                            style={{ fontSize: '1.1rem' }}
                             onClick={() => {
                                 handleDrawerCloser();
                                 navigate('/bag/payment');
                             }}
                         >
                             Go to payment
-                        </CustomizedButton>
+                        </Button>
                     </div>
                 )}
             </Drawer>
@@ -157,21 +159,53 @@ function Header() {
                 <div className={clsx('col l-5 m-6', style.navLink)}>
                     <ul>
                         <li>
-                            <Link to="/shop">Shop</Link>
+                            <Button
+                                secondary
+                                style={{
+                                    fontSize: '1.1rem',
+                                }}
+                                to="/shop"
+                            >
+                                Shop
+                            </Button>
                         </li>
                         <li>
-                            <Link to="/women">Women</Link>
+                            <Button
+                                secondary
+                                style={{
+                                    fontSize: '1.1rem',
+                                }}
+                                to="/women"
+                            >
+                                Women
+                            </Button>
                         </li>
                         <li>
-                            <Link to="/men">Men</Link>
+                            <Button
+                                secondary
+                                style={{
+                                    fontSize: '1.1rem',
+                                }}
+                                to="/men"
+                            >
+                                Men
+                            </Button>
                         </li>
                         <li>
-                            <Link to="/about">About</Link>
+                            <Button
+                                secondary
+                                style={{
+                                    fontSize: '1.1rem',
+                                }}
+                                to="/about"
+                            >
+                                About
+                            </Button>
                         </li>
                     </ul>
                 </div>
                 <div className={clsx('col l-2 m-0', style.logo)}>
-                    <Link to="/">Vian</Link>
+                    <Link to="/">VIAN</Link>
                 </div>
 
                 <div className={clsx('col l-5 grid', style.toolOfNav)}>
@@ -216,30 +250,43 @@ function Header() {
                                                 }}
                                             >
                                                 <img src={item.image} style={{ width: '90px' }} />
-                                                <div>
-                                                    <p style={{ fontSize: '1rem' }}>{item.title}</p>
-                                                    <p style={{ fontSize: '1rem' }}>{item.description}</p>
+                                                <div className={style.content}>
+                                                    <p style={{ fontSize: '1rem', color: 'var(--green)' }}>
+                                                        {item.title}
+                                                    </p>
+                                                    <p style={{ fontSize: '1rem', color: '#333' }}>
+                                                        {item.description}
+                                                    </p>
                                                 </div>
                                             </li>
                                         );
                                     })
                                 ) : (
-                                    <li className={style.searchItem}>Nothing</li>
+                                    <li className={style.searchItem} style={{ justifyContent: 'center' }}>
+                                        Nothing
+                                    </li>
                                 )}
                             </ul>
                         </li>
                         <li className={clsx(style.card, 'col l-3 m-6')}>
                             <Badge color="secondary" badgeContent={bagNumber} showZero>
-                                <a className={clsx(style.Badge)} style={{}} onClick={() => handleOpenBag()}>
+                                <Button
+                                    secondary
+                                    style={{ padding: 0, margin: 0, minWidth: '60px', fontSize: '1.1rem' }}
+                                    onClick={() => handleOpenBag()}
+                                >
                                     Bag
-                                </a>
+                                </Button>
                             </Badge>
                         </li>
                         <li className={clsx(style.loginBtn, 'col l-3 m-6', style.dropDown)}>
                             {user ? (
-                                <a>
+                                <Button
+                                    secondary
+                                    style={{ padding: 0, margin: 0, minWidth: '60px', fontSize: '1.1rem' }}
+                                >
                                     <AccountCircleIcon className={style.dropdownIcon} />
-                                </a>
+                                </Button>
                             ) : (
                                 <Link to="/login">Login</Link>
                             )}
@@ -276,80 +323,140 @@ function Header() {
                                 variant="persistent"
                                 anchor="left"
                                 open={drawer}
-                                className={style.drawer}
                             >
-                                <DrawerHeader
-                                    sx={{
-                                        display: 'flex',
-                                        height: '50px',
-                                        justifyContent: 'end',
-                                    }}
-                                >
-                                    <IconButton onClick={handleDrawerCloser}>
-                                        <ChevronLeftIcon className={style.closeIcon} />
-                                    </IconButton>
-                                </DrawerHeader>
+                                <div className={style.closeMenuBlock}>
+                                    <Button secondary large style={{ minWidth: '50px' }} onClick={handleDrawerCloser}>
+                                        <ChevronLeftIcon style={{ fontSize: '24px', margin: 0, padding: 0 }} />
+                                    </Button>
+                                </div>
+
                                 <hr style={{ height: '1px', margin: '4px 0', width: '100%' }}></hr>
 
                                 <List sx={{ width: 350 }} className={style.list}>
                                     <li>
-                                        <Link onClick={() => handleDrawerCloser()} to="/shop">
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            onClick={() => handleDrawerCloser()}
+                                            to="/shop"
+                                        >
                                             Shop
-                                        </Link>
+                                        </Button>
                                     </li>
                                     <li>
-                                        <Link onClick={() => handleDrawerCloser()} to="/women">
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            onClick={() => handleDrawerCloser()}
+                                            to="/women"
+                                        >
                                             Women
-                                        </Link>
+                                        </Button>
                                     </li>
                                     <li>
-                                        <Link onClick={() => handleDrawerCloser()} to="/men">
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            onClick={() => handleDrawerCloser()}
+                                            to="/men"
+                                        >
                                             Men
-                                        </Link>
+                                        </Button>
                                     </li>
                                     <li>
-                                        <Link onClick={() => handleDrawerCloser()} to="/about">
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            onClick={() => handleDrawerCloser()}
+                                            to="/about"
+                                        >
                                             About
-                                        </Link>
+                                        </Button>
                                     </li>
                                 </List>
                                 <hr style={{ height: '1px', margin: '4px 0', width: '100%' }}></hr>
                                 <List sx={{ width: 350 }} className={style.list}>
                                     <li>
-                                        <Link to="shop/type/hat" onClick={() => handleDrawerCloser()}>
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            to="shop/type/hat"
+                                            onClick={() => handleDrawerCloser()}
+                                        >
                                             Hat
-                                        </Link>
+                                        </Button>
                                     </li>
                                     <li>
-                                        <Link to="shop/type/tshirst" onClick={() => handleDrawerCloser()}>
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            to="shop/type/tshirst"
+                                            onClick={() => handleDrawerCloser()}
+                                        >
                                             T-shirst
-                                        </Link>
+                                        </Button>
                                     </li>
                                     <li>
-                                        <Link to="shop/type/trouser" onClick={() => handleDrawerCloser()}>
-                                            trousers
-                                        </Link>
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            to="shop/type/trouser"
+                                            onClick={() => handleDrawerCloser()}
+                                        >
+                                            Trousers
+                                        </Button>
                                     </li>
                                     <li>
-                                        <Link to="/shop/type/shoes" onClick={() => handleDrawerCloser()}>
-                                            shoes
-                                        </Link>
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            to="/shop/type/shoes"
+                                            onClick={() => handleDrawerCloser()}
+                                        >
+                                            Shoes
+                                        </Button>
                                     </li>
                                     <li>
-                                        <Link to="/shop/type/outer" onClick={() => handleDrawerCloser()}>
-                                            outer
-                                        </Link>
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            to="/shop/type/outer"
+                                            onClick={() => handleDrawerCloser()}
+                                        >
+                                            uter
+                                        </Button>
                                     </li>
                                     <li>
-                                        <Link to="/shop/type/short" onClick={() => handleDrawerCloser()}>
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            to="/shop/type/short"
+                                            onClick={() => handleDrawerCloser()}
+                                        >
                                             Short
-                                        </Link>
+                                        </Button>
                                     </li>
 
                                     <li>
-                                        <Link to="/my-favorite" onClick={() => handleDrawerCloser()}>
+                                        <Button
+                                            small
+                                            secondary
+                                            style={{ fontSize: '1.1rem' }}
+                                            to="/my-favorite"
+                                            onClick={() => handleDrawerCloser()}
+                                        >
                                             Favorite <FavoriteIcon sx={{ width: '16px', margin: 0 }} />
-                                        </Link>
+                                        </Button>
                                     </li>
                                 </List>
                                 <hr style={{ height: '1px', margin: '4px 0', width: '100%' }}></hr>
@@ -357,14 +464,21 @@ function Header() {
 
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                                 <div className={style.logo}>
-                                    <Link to="/">Vian</Link>
+                                    <Link to="/">VIAN</Link>
                                 </div>
                             </Typography>
-                            <Button color="inherit" onClick={() => handleOpenBag()}>
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                sx={{ ml: '.3px' }}
+                                onClick={() => handleOpenBag()}
+                            >
                                 <Badge color="secondary" badgeContent={bagNumber} showZero>
                                     <ShoppingBagIcon />
                                 </Badge>
-                            </Button>
+                            </IconButton>
                         </Toolbar>
                     </AppBar>
                 </Box>

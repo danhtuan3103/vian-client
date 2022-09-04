@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import Button from '../../components/Button';
+
 //checkbox
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -21,28 +23,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-
 import uniqid from 'uniqid';
 
 import { useContext } from 'react';
 import { contextUser } from '../../App';
-
-const CustomizedButton = styled(Button)`
-    margin: 8px;
-    color: var(--green);
-    border-color: var(--green);
-    width: 180px;
-    cursor: pointer;
-    height: 45px;
-
-    :hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
-`;
 
 function Detail() {
     // Context
@@ -160,12 +144,12 @@ function Detail() {
             </div>
             <div className={clsx(style.infoBlock, 'col l-6 m-12 c-12')}>
                 <div className={style.info}>
-                    <h3>{item.title}</h3>
-                    <p>price : {item.price}</p>
+                    <h3 className={style.title}>{item.title}</h3>
+                    <p className={style.price}>price : {item.price}</p>
                     <div className={clsx(style.line)}></div>
 
-                    <div className={clsx(style.inputBLock, 'row')}>
-                        <FormControl sx={{ m: 1, minWidth: 150 }}>
+                    <div className={clsx(style.inputBLock)}>
+                        <FormControl sx={{ m: 1, minWidth: 120 }}>
                             <InputLabel id="demo-simple-select-helper-label">Color</InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
@@ -184,7 +168,7 @@ function Detail() {
                             </Select>
                         </FormControl>
 
-                        <FormControl sx={{ m: 1, minWidth: 150 }}>
+                        <FormControl sx={{ m: 1, minWidth: 120 }}>
                             <InputLabel id="demo-simple-select-helper-label">Size</InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
@@ -204,7 +188,7 @@ function Detail() {
                         </FormControl>
                         <div>
                             <TextField
-                                sx={{ m: 1, maxWidth: 150 }}
+                                sx={{ m: 1, maxWidth: 120 }}
                                 id="outlined-number"
                                 label="Quantily"
                                 type="number"
@@ -248,24 +232,12 @@ function Detail() {
                     </div>
 
                     <div className={style.btnBlock}>
-                        <CustomizedButton
-                            onClick={() => handleBuyButton()}
-                            id="outlined-basic"
-                            size="small"
-                            label="Account"
-                            variant="outlined"
-                        >
+                        <Button onClick={() => handleBuyButton()} outline style={{ minWidth: 150 }}>
                             Buy Now
-                        </CustomizedButton>
-                        <CustomizedButton
-                            onClick={() => handlePocket()}
-                            id="outlined-basic"
-                            size="small"
-                            label="Account"
-                            variant="outlined"
-                        >
+                        </Button>
+                        <Button onClick={() => handlePocket()} outline style={{ minWidth: 150 }}>
                             Add to card
-                        </CustomizedButton>
+                        </Button>
                     </div>
                 </div>
             </div>

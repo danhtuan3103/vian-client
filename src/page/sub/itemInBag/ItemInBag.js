@@ -22,22 +22,22 @@ function ItemInBag({ data }) {
             .catch((err) => console.log(err));
     };
 
+    let link = `/item/${data._id}?color=${data.selected_color}&&size=${data.selected_size}&&count=${data.selected_count}`;
+
     return (
         <div className={style.tableBlock}>
-            <a
-                href={`/item/${data._id}?color=${data.selected_color}&&size=${data.selected_size}&&count=${data.selected_count}`}
-            >
+            <a href={link}>
                 <img src={data.image} alt={data.title} />
             </a>
-            <FormControl sx={{ m: 1, minWidth: 100 }}>
+            <FormControl sx={{ m: 1, minWidth: 40 }}>
                 <p className={style.key}>color</p>
                 <p className={style.value}>{data.selected_color}</p>
             </FormControl>
-            <FormControl sx={{ m: 1, minWidth: 100 }}>
+            <FormControl sx={{ m: 1, minWidth: 40 }}>
                 <p className={style.key}>size</p>
                 <p className={style.value}>{data.selected_size}</p>
             </FormControl>
-            <FormControl sx={{ m: 1, minWidth: 100 }}>
+            <FormControl sx={{ m: 1, minWidth: 40 }}>
                 <p className={style.key}>Quantity</p>
                 <p className={style.value}>{data.selected_count}</p>
             </FormControl>

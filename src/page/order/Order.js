@@ -219,10 +219,8 @@ function Order() {
                         </div>
                     </Accordion>
                     <Accordion>
+                        <p>Adress*</p>
                         <AccordionSummary id="panel1bh-header">
-                            <Typography component={'span'} sx={{ width: '33%', flexShrink: 0 }}>
-                                Adress*
-                            </Typography>
                             <Typography
                                 component={'span'}
                                 sx={{ color: 'text.secondary' }}

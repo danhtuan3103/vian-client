@@ -27,7 +27,7 @@ const CustomizedButton = styled(Button)`
     }
 `;
 
-function CardBlock({ item, grid }) {
+function CardBlock({ item, noGrid }) {
     const context = useContext(contextUser);
     const { favorites, setFavorites, user } = context;
     let navigate = useNavigate();
@@ -55,7 +55,7 @@ function CardBlock({ item, grid }) {
         }
     };
     return (
-        <div className={clsx(grid ? `${grid}` : 'col l-3 m-4 c-6', style.card)}>
+        <div className={clsx(noGrid ? style.noGrid : 'col l-3 m-4 c-6', style.card)}>
             <Card className={style.cardBlock}>
                 <CardMedia
                     component="img"

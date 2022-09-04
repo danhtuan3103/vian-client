@@ -9,13 +9,13 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { useState, useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import { contextUser } from '../../App.js';
+import Button from '../../components/Button';
 
 import Cookies from 'universal-cookie';
 
@@ -124,9 +124,9 @@ function Login({ prePath }) {
                         />
                     </FormControl>
 
-                    <CustomizedButton onClick={(e) => handleLogin(e)} className={style.LoginBtn} variant="outlined">
+                    <Button outline onClick={(e) => handleLogin(e)} style={{ minWidth: '160px' }}>
                         Login
-                    </CustomizedButton>
+                    </Button>
                     <Link to="forget">Forget your password ?</Link>
                     <Link to="/register">Don't you have account ?</Link>
                 </div>

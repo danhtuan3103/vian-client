@@ -1,5 +1,5 @@
 .tableBlock {
-    width: 500px;
+    width: 350px;
     height: 100px;
     margin-bottom: 4px;
     border-bottom: 1px solid var(--green);
@@ -16,11 +16,12 @@
 }
 .key {
     color: var(--green);
-    font-size: 1rem;
+
+    font-size: 0.9rem;
     margin: 4px 0;
 }
 .value {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin: 4px 0;
 }
 .toolPockets {
