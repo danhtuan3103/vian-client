@@ -1,7 +1,7 @@
 import style from './Header.module.css';
 import clsx from 'clsx';
 import Button from '../../../components/Button';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
@@ -32,25 +32,10 @@ import ItemInBag from '../../sub/itemInBag/ItemInBag';
 
 import { contextUser } from '../../../App';
 import axios from 'axios';
-import { Icon } from '@mui/material';
 
 const CustomizedTextField = styled(TextField)`
     height: 10px;
     margin-top: -10px;
-`;
-
-const CustomizedButton = styled(Button)`
-    margin: 8px;
-    color: var(--green);
-    border-color: var(--green);
-    width: 170px;
-    cursor: pointer;
-
-    :hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
 `;
 
 function Header() {
