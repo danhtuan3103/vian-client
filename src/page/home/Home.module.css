@@ -29,6 +29,9 @@
 
 .btnBlock {
     margin: 12px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .img {

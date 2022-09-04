@@ -3,8 +3,8 @@
 }
 
 .imgBlock > .img > img {
-    width: 450px;
-    height: 450px;
+    width: 400px;
+    height: 400px;
 }
 
 .inputBLock,
@@ -57,7 +57,7 @@
         justify-content: center;
     }
     .imgBlock {
-        width: 400px;
+        width: 370px;
         height: 430px;
         display: flex;
         justify-content: center;

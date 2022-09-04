@@ -4,16 +4,17 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { useContext } from 'react';
+
 import { contextUser } from '../../../App';
 import axios from 'axios';
 
+import Button from '../../../components/Button';
 const CustomizedButton = styled(Button)`
     color: var(--green);
     border-color: var(--green);
@@ -64,7 +65,7 @@ function CardBlock({ item, noGrid }) {
                     image={item.image}
                     onClick={() => handleClickDetailPage()}
                 />
-                <CardContent>
+                <CardContent sx={{ padding: '12px' }}>
                     <Typography gutterBottom variant="p" component="div" sx={{ fontSize: '1.1rem' }}>
                         {item.title}
                     </Typography>
@@ -76,14 +77,15 @@ function CardBlock({ item, noGrid }) {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
+                        padding: '4px',
                     }}
                 >
-                    <CustomizedButton onClick={() => handleClickDetailPage()} size="small">
+                    <Button secondary onClick={() => handleClickDetailPage()}>
                         Buy
-                    </CustomizedButton>
-                    <CustomizedButton size="small" className={style.FavoriteButton} onClick={() => handleFavorite()}>
-                        <FavoriteIcon className={style.FavoriteIcon} />
-                    </CustomizedButton>
+                    </Button>
+                    <Button secondary small onClick={() => handleFavorite()} style={{ padding: 0, minWidth: '80px' }}>
+                        <FavoriteIcon />
+                    </Button>
                 </CardActions>
             </Card>
         </div>
