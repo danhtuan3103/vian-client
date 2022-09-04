@@ -65,10 +65,10 @@ function CardBlock({ item, noGrid }) {
                     onClick={() => handleClickDetailPage()}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="p" component="div" sx={{ fontSize: '1.2rem' }}>
+                    <Typography gutterBottom variant="p" component="div" sx={{ fontSize: '1.1rem' }}>
                         {item.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" fontSize="1rem">
+                    <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
                         price: <span style={{ color: '#cc0000' }}>{item.price}</span> won
                     </Typography>
                 </CardContent>
