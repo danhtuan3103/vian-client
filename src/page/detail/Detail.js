@@ -113,7 +113,7 @@ function Detail() {
                 ]);
 
                 axios
-                    .post('http://localhost:4000/bag/add', {
+                    .post(`${process.env.REACT_APP_API_KEY}/bag/add`, {
                         user_id: typeof user === 'string' ? user : user.user_id,
                         bag: {
                             ...item,
