@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { contextUser } from '../../App';
 import Cookies from 'universal-cookie';
-import usePrompt from '../hook/usePrompt';
+import usePrompt from '../../hook/usePrompt';
 
 // UI Material
 import Table from '@mui/material/Table';
@@ -220,7 +220,7 @@ function Order() {
                     </Accordion>
                     <p>Adress*</p>
                     <Accordion>
-                        <AccordionSummary id="panel1bh-header">
+                        <AccordionSummary id="panel1bh-header" className={style.adressBlock}>
                             <Typography
                                 component={'span'}
                                 sx={{ color: 'text.secondary' }}
@@ -262,7 +262,7 @@ function Order() {
                                 <CustomizedTextareaAutosize
                                     aria-label="empty textarea"
                                     placeholder="배송메시지"
-                                    style={{ width: 300 }}
+                                    style={{ width: 320 }}
                                     minRows={3}
                                     value={message}
                                     onChange={(event) => {

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { contextUser } from '../../App';
-import usePrompt from '../hook/usePrompt';
+import usePrompt from '../../hook/usePrompt';
 import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 
@@ -38,7 +38,6 @@ function BagPayment() {
     const context = useContext(contextUser);
     const { bag, setBag, user, setOrder } = context;
     const cookies = new Cookies();
-    const formIsDirty = true;
     const navigate = useNavigate();
 
     const [name, setName] = useState(cookies.get('USER_INFO')?.name);
@@ -94,6 +93,8 @@ function BagPayment() {
             alert('Please back to the previous page and choose color, size, quality again');
         }
     };
+
+    const formIsDirty = true;
     usePrompt('Are you sure you want to redirect to another page ?', formIsDirty);
     return (
         <div>
@@ -148,7 +149,7 @@ function BagPayment() {
                 </Table>
             </TableContainer>
 
-            <TableContainer component={Paper} key="2">
+            <TableContainer component={Paper} key="2" sx={{ marginTop: '16px' }}>
                 <Table sx={{ width: 650, height: '150px', float: 'right' }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -168,7 +169,7 @@ function BagPayment() {
             </TableContainer>
 
             <div>
-                <h2>User Information</h2>
+                <h4>User Information</h4>
                 <Accordion>
                     <AccordionSummary id="panel1bh-header">
                         <Typography sx={{ width: '33%', flexShrink: 0 }} component={'span'}>
@@ -272,7 +273,7 @@ function BagPayment() {
                             <CustomizedTextareaAutosize
                                 aria-label="empty textarea"
                                 placeholder="배송메시지"
-                                style={{ width: 300 }}
+                                style={{ width: 320 }}
                                 minRows={3}
                                 value={message}
                                 onChange={(event) => {
@@ -283,7 +284,7 @@ function BagPayment() {
                     </AccordionSummary>
                 </Accordion>
             </div>
-            <Button outline style={{ minWidth: 150, marginTop: '16px' }} onClick={handleClickConfirm}>
+            <Button outline small style={{ minWidth: 170, marginTop: '16px' }} onClick={handleClickConfirm}>
                 Confirm
             </Button>
         </div>

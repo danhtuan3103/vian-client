@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import Toast from '../../components/Toast';
 
 import Button from '../../components/Button';
 
@@ -41,6 +42,8 @@ function Detail() {
     const [colors, setColors] = useState([]);
     const [descriptionImage, setDescriptionImage] = useState('');
     const [sizes, setSizes] = useState([]);
+    const [isOpenToast, setIsOpenToast] = useState(false);
+
     useEffect(() => {
         axios
             .get(`${process.env.REACT_APP_API_KEY}/item/id/${id}`)
@@ -126,6 +129,8 @@ function Detail() {
                     .catch((error) => {
                         console.log(error);
                     });
+
+                setIsOpenToast(true);
             } else {
                 alert('Please Choose Color, Size, Quanity ');
             }
@@ -245,6 +250,15 @@ function Detail() {
             <div className={style.descriptionImage}>
                 <img src={descriptionImage} alt="description" />
             </div>
+
+            {isOpenToast && (
+                <Toast
+                    description="Hello anh em , you are"
+                    type="success"
+                    position="bottom-right"
+                    setIsOpenToast={setIsOpenToast}
+                />
+            )}
         </div>
     );
 }

@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
 import { contextUser } from '../../App';
-import usePrompt from '../hook/usePrompt';
+import usePrompt from '../../hook/usePrompt';
 import axios from 'axios';
 import uniqid from 'uniqid';
 

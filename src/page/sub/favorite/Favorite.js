@@ -5,49 +5,25 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { contextUser } from '../../../App';
 
-const CustomizedButton = styled(Button)`
-    color: var(--green);
-    border-color: var(--green);
-    width: 100px;
-    cursor: pointer;
-
-    :hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
-`;
-
-const DeleteButton = styled(Button)`
-    color: rgb(255, 0, 0);
-    border-color: var(--green);
-    width: 100px;
-    cursor: pointer;
-
-    :hover {
-        color: rgb(255, 0, 0, 0.7);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
-`;
+import Modal from '../../../components/Modal';
+import Button from '../../../components/Button';
 
 const CardBlock = ({ user, item, favorites, setFavorites }) => {
-    console.log(favorites);
+    const [isOpen, setIsOpen] = useState(false);
 
+    console.log(favorites);
     let navigate = useNavigate();
     const handleClickDetailPage = () => {
         navigate('/shop/' + item._id);
     };
 
-    const hanleDelete = () => {
+    const handleDelete = () => {
         setFavorites(favorites.filter((favorite) => favorite._id !== item._id));
 
         const data = {
@@ -63,7 +39,6 @@ const CardBlock = ({ user, item, favorites, setFavorites }) => {
                 console.log('Error');
             });
     };
-
     return (
         <div className={clsx('col l-3 m-4 c-6', style.card)}>
             <Card className={style.cardBlock}>
@@ -88,15 +63,40 @@ const CardBlock = ({ user, item, favorites, setFavorites }) => {
                         justifyContent: 'center',
                     }}
                 >
-                    <CustomizedButton onClick={() => handleClickDetailPage()} size="small">
+                    <Button onClick={() => handleClickDetailPage()} size="small">
                         Buy
-                    </CustomizedButton>
-                    <DeleteButton onClick={() => hanleDelete()} size="small">
+                    </Button>
+                    <Button onClick={() => setIsOpen(true)} size="small">
                         {' '}
                         Delete{' '}
-                    </DeleteButton>
+                    </Button>
                 </CardActions>
             </Card>
+
+            {isOpen && (
+                <Modal
+                    setIsOpen={setIsOpen}
+                    title="Notification"
+                    dialogText="Are you sure you want to delete the item?"
+                    rightBtn={
+                        <Button onClick={() => setIsOpen(false)} secondary>
+                            Cancel
+                        </Button>
+                    }
+                    leftBtn={
+                        <Button
+                            onClick={() => handleDelete()}
+                            primary
+                            style={{
+                                backgroundColor: 'red',
+                            }}
+                        >
+                            {' '}
+                            Delete
+                        </Button>
+                    }
+                />
+            )}
         </div>
     );
 };
@@ -107,28 +107,23 @@ function Favorite() {
     return (
         <div className={style.wrapper}>
             <h2>Favorite</h2>
-
-            {user ? (
-                <div className={clsx('row')}>
-                    {favorites.length > 0 ? (
-                        favorites.map((item) => {
-                            return (
-                                <CardBlock
-                                    key={item._id}
-                                    user={user}
-                                    item={item}
-                                    favorites={favorites}
-                                    setFavorites={setFavorites}
-                                />
-                            );
-                        })
-                    ) : (
-                        <p className={clsx('col l-12')}>No thing</p>
-                    )}
-                </div>
-            ) : (
-                <p>You must Login</p>
-            )}
+            <div className={clsx('row')}>
+                {favorites.length > 0 ? (
+                    favorites.map((item) => {
+                        return (
+                            <CardBlock
+                                key={item._id}
+                                user={user}
+                                item={item}
+                                favorites={favorites}
+                                setFavorites={setFavorites}
+                            />
+                        );
+                    })
+                ) : (
+                    <p className={clsx('col l-12')}>No thing</p>
+                )}
+            </div>
         </div>
     );
 }

@@ -14,6 +14,7 @@ const Detail = lazy(() => import('../page/detail/Detail'));
 const Favorite = lazy(() => import('../page/sub/favorite/Favorite'));
 const NoMatch = lazy(() => import('../page/sub/noMatch/NoMatch'));
 const BagPayment = lazy(() => import('../page/bagPayment/BagPayment'));
+const About = lazy(() => import('../page/about'));
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -27,6 +28,7 @@ const publicRoutes = [
     { path: 'men/:id', component: Detail },
     { path: 'login', component: Login },
     { path: 'register', component: Register },
+    { path: 'about', component: About },
     { path: '*', component: NoMatch },
 ];
 const privateRoutes = [

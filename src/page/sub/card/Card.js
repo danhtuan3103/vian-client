@@ -8,27 +8,16 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
-import { useContext } from 'react';
+import Toast from '../../../components/Toast';
+import { useContext, useState } from 'react';
 
 import { contextUser } from '../../../App';
 import axios from 'axios';
 
 import Button from '../../../components/Button';
-const CustomizedButton = styled(Button)`
-    color: var(--green);
-    border-color: var(--green);
-    width: 100px;
-    cursor: pointer;
-
-    :hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
-`;
 
 function CardBlock({ item, noGrid }) {
+    const [isOpenToast, setIsOpenToast] = useState(false);
     const context = useContext(contextUser);
     const { favorites, setFavorites, user } = context;
     let navigate = useNavigate();
@@ -45,7 +34,10 @@ function CardBlock({ item, noGrid }) {
                         user_id: typeof user === 'string' ? user : user.user_id,
                         item_id: item._id,
                     })
-                    .then((response) => console.log(response))
+                    .then((response) => {
+                        setIsOpenToast(true);
+                        console.log(response);
+                    })
                     .catch((error) => console.log(error));
             } else {
                 alert('Favorite added ');
@@ -88,6 +80,14 @@ function CardBlock({ item, noGrid }) {
                     </Button>
                 </CardActions>
             </Card>
+            {isOpenToast && (
+                <Toast
+                    description="Added item into favorites"
+                    type="success"
+                    position="top-right"
+                    setIsOpenToast={setIsOpenToast}
+                />
+            )}
         </div>
     );
 }

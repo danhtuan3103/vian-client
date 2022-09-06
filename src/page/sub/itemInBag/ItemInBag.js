@@ -2,14 +2,17 @@ import style from './ItemInBag.module.css';
 import FormControl from '@mui/material/FormControl';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
+import Modal from '../../../components/Modal';
+import Button from '../../../components/Button';
 import axios from 'axios';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { contextUser } from '../../../App';
 
 function ItemInBag({ data }) {
     const context = useContext(contextUser);
     const { bag, setBag, user } = context;
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleDeleteItem = () => {
         setBag(bag.filter((item) => item.selected_id !== data.selected_id));
@@ -42,9 +45,34 @@ function ItemInBag({ data }) {
                 <p className={style.value}>{data.selected_count}</p>
             </FormControl>
 
-            <div className={style.toolPockets} onClick={handleDeleteItem}>
+            <div className={style.toolPockets} onClick={() => setIsOpen(true)}>
                 <DeleteForeverIcon className={style.deleteIcon} />
             </div>
+
+            {isOpen && (
+                <Modal
+                    setIsOpen={setIsOpen}
+                    title="Notification"
+                    dialogText="Are you sure you want to delete the item?"
+                    rightBtn={
+                        <Button onClick={() => setIsOpen(false)} secondary>
+                            Cancel
+                        </Button>
+                    }
+                    leftBtn={
+                        <Button
+                            onClick={() => handleDeleteItem()}
+                            primary
+                            style={{
+                                backgroundColor: 'red',
+                            }}
+                        >
+                            {' '}
+                            Delete
+                        </Button>
+                    }
+                />
+            )}
         </div>
     );
 }

@@ -12,10 +12,11 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import { contextUser } from '../../App.js';
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 
 import Cookies from 'universal-cookie';
 
@@ -68,7 +69,6 @@ function Login({ prePath }) {
             .post(`${process.env.REACT_APP_API_KEY}/user/login`, data)
             .then((response) => {
                 console.log(response.data);
-                alert(response.data.message);
                 setUser(response.data);
 
                 cookies.set('TOKEN', response.data.token);
@@ -130,7 +130,6 @@ function Login({ prePath }) {
                     <Link to="forget">Forget your password ?</Link>
                     <Link to="/register">Don't you have account ?</Link>
                 </div>
-
                 <p style={{ color: 'red' }}>{message}</p>
             </div>
         </div>
