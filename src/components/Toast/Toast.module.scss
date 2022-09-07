@@ -1,4 +1,5 @@
 .notification-container {
+    z-index: 10000;
     margin-top: 12px;
 }
 .notification {
@@ -95,4 +96,10 @@
 }
 .warning {
     color: orange;
+}
+
+@media (max-width: 1024px) {
+    .notification {
+        min-width: 350px;
+    }
 }
