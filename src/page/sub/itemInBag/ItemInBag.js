@@ -8,10 +8,11 @@ import axios from 'axios';
 
 import { useContext, useState } from 'react';
 import { contextUser } from '../../../App';
+import uniqid from 'uniqid';
 
 function ItemInBag({ data }) {
     const context = useContext(contextUser);
-    const { bag, setBag, user } = context;
+    const { bag, setBag, user, setNotifications } = context;
     const [isOpen, setIsOpen] = useState(false);
 
     const handleDeleteItem = () => {
@@ -21,7 +22,16 @@ function ItemInBag({ data }) {
                 user_id: user,
                 selected_id: data.selected_id,
             })
-            .then((res) => {})
+            .then((res) => {
+                setNotifications((pre) => [
+                    ...pre,
+                    {
+                        id: uniqid(),
+                        description: 'Delete item in bag successfully',
+                        type: 'success',
+                    },
+                ]);
+            })
             .catch((err) => console.log(err));
     };
 

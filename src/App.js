@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ProtectedRoutes } from './auth/ProtectedRoutes';
 import Loading from './page/sub/loading/Loading';
 import { publicRoutes, privateRoutes } from './routes';
+import ToastPortal from './components/ToastPortal';
 export const contextUser = createContext();
 
 const cookies = new Cookies();
@@ -15,6 +16,7 @@ function App() {
     const [order, setOrder] = useState({});
     const [bag, setBag] = useState([]);
     const [favorites, setFavorites] = useState([]);
+    const [notifications, setNotifications] = useState([]);
     const apiCalling = async () => {
         await axios
             .post(`${process.env.REACT_APP_API_KEY}/bag` || 'http://localhost:4000/bag', {
@@ -45,6 +47,8 @@ function App() {
         setBag,
         favorites,
         setFavorites,
+        notifications,
+        setNotifications,
     };
 
     return (
@@ -75,6 +79,7 @@ function App() {
                         })}
                     </Routes>
                 </Suspense>
+                <ToastPortal position="top-left" autoClose={true} />
             </div>
         </contextUser.Provider>
     );

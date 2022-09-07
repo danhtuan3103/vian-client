@@ -3,9 +3,7 @@ import clsx from 'clsx';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import SubLink from '../subLink/SubLink';
-import Loading from '../sub/loading/Loading';
 import Slider from '../sub/slider/Slider';
-
 import CardBlock from '../sub/card/Card';
 
 function Shop() {

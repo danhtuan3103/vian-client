@@ -1,44 +1,76 @@
 import React, { useState } from 'react';
+import uniqid from 'uniqid';
 import Modal from '../../components/Modal';
 import styles from './About.module.css';
 import Button from '../../components/Button';
-import Toast from '../../components/Toast';
+import classNames from 'classnames/bind';
+import { useContext } from 'react';
+import { contextUser } from '../../App';
+const cx = classNames.bind(styles);
 function About() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isOpenToast, setIsOpenToast] = useState(false);
+    console.log('re-render');
+    const { notifications, setNotifications } = useContext(contextUser);
+    console.log(notifications);
 
+    const handleClick = (toastList) => {
+        const newLists = [...notifications, toastList];
+        setNotifications(newLists);
+    };
     return (
-        <div style={{ height: '100vh' }}>
-            <Button primary onClick={() => setIsOpenToast(!isOpenToast)}>
-                Open
+        <div style={{}}>
+            <Button
+                primary
+                onClick={() =>
+                    handleClick({
+                        id: uniqid(),
+                        description: 'Hello anh em , you are',
+                        type: 'info',
+                        position: 'top-right',
+                    })
+                }
+            >
+                Open Info
             </Button>
-            {isOpen && (
-                <Modal
-                    setIsOpen={setIsOpen}
-                    title="Title"
-                    dialogText="Are you sure you want to delete the item?"
-                    rightBtn={<Button secondary>Allow</Button>}
-                    leftBtn={
-                        <Button
-                            primary
-                            style={{
-                                backgroundColor: 'red',
-                            }}
-                        >
-                            Cancel
-                        </Button>
-                    }
-                />
-            )}
+            <Button
+                primary
+                onClick={() =>
+                    handleClick({
+                        id: uniqid(),
+                        description: 'Hello anh em , you are',
+                        type: 'warning',
+                        position: 'top-right',
+                    })
+                }
+            >
+                Open Info
+            </Button>
+            <Button
+                primary
+                onClick={() =>
+                    handleClick({
+                        id: uniqid(),
+                        description: 'Hello anh em , you are',
+                        type: 'danger',
+                        position: 'top-right',
+                    })
+                }
+            >
+                Open Info
+            </Button>
 
-            {isOpenToast && (
-                <Toast
-                    description="Hello anh em , you are"
-                    type="warning"
-                    position="top-right"
-                    setIsOpenToast={setIsOpenToast}
-                />
-            )}
+            <Button
+                primary
+                onClick={() =>
+                    handleClick({
+                        id: uniqid(),
+                        description: 'Hello anh em , you are',
+                        type: 'success',
+                        position: 'top-right',
+                    })
+                }
+            >
+                Open Info
+            </Button>
         </div>
     );
 }

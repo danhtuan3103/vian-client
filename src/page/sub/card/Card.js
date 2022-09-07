@@ -5,21 +5,17 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Toast from '../../../components/Toast';
 import { useContext, useState } from 'react';
-
+import uniqid from 'uniqid';
 import { contextUser } from '../../../App';
 import axios from 'axios';
-
 import Button from '../../../components/Button';
 
 function CardBlock({ item, noGrid }) {
-    const [isOpenToast, setIsOpenToast] = useState(false);
     const context = useContext(contextUser);
-    const { favorites, setFavorites, user } = context;
+    const { favorites, setFavorites, user, setNotifications } = context;
     let navigate = useNavigate();
     const handleClickDetailPage = () => {
         navigate('/shop/' + item._id);
@@ -35,12 +31,26 @@ function CardBlock({ item, noGrid }) {
                         item_id: item._id,
                     })
                     .then((response) => {
-                        setIsOpenToast(true);
+                        setNotifications((pre) => [
+                            ...pre,
+                            {
+                                id: uniqid(),
+                                description: 'Add item into favorites successfully',
+                                type: 'success',
+                            },
+                        ]);
                         console.log(response);
                     })
                     .catch((error) => console.log(error));
             } else {
-                alert('Favorite added ');
+                setNotifications((pre) => [
+                    ...pre,
+                    {
+                        id: uniqid(),
+                        description: 'This item was added in favorites',
+                        type: 'danger',
+                    },
+                ]);
             }
         } else {
             alert('You must Login');
@@ -80,14 +90,6 @@ function CardBlock({ item, noGrid }) {
                     </Button>
                 </CardActions>
             </Card>
-            {isOpenToast && (
-                <Toast
-                    description="Added item into favorites"
-                    type="success"
-                    position="top-right"
-                    setIsOpenToast={setIsOpenToast}
-                />
-            )}
         </div>
     );
 }

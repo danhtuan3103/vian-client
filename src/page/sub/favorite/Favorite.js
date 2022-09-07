@@ -10,14 +10,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { contextUser } from '../../../App';
+import uniqid from 'uniqid';
 
 import Modal from '../../../components/Modal';
 import Button from '../../../components/Button';
 
-const CardBlock = ({ user, item, favorites, setFavorites }) => {
+const CardBlock = ({ user, item, favorites, setFavorites, setNotifications }) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    console.log(favorites);
     let navigate = useNavigate();
     const handleClickDetailPage = () => {
         navigate('/shop/' + item._id);
@@ -33,7 +33,14 @@ const CardBlock = ({ user, item, favorites, setFavorites }) => {
         axios
             .post(`${process.env.REACT_APP_API_KEY}/favorite/delete`, data)
             .then((response) => {
-                alert(response.data.message);
+                setNotifications((pre) => [
+                    ...pre,
+                    {
+                        id: uniqid(),
+                        type: 'success',
+                        description: 'Delete favorite successfully',
+                    },
+                ]);
             })
             .catch((error) => {
                 console.log('Error');
@@ -102,8 +109,7 @@ const CardBlock = ({ user, item, favorites, setFavorites }) => {
 };
 function Favorite() {
     const context = useContext(contextUser);
-    const { user, favorites, setFavorites } = context;
-
+    const { user, favorites, setFavorites, setNotifications } = context;
     return (
         <div className={style.wrapper}>
             <h2>Favorite</h2>
@@ -117,6 +123,7 @@ function Favorite() {
                                 item={item}
                                 favorites={favorites}
                                 setFavorites={setFavorites}
+                                setNotifications={setNotifications}
                             />
                         );
                     })

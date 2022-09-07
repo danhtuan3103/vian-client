@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import Toast from '../../components/Toast';
-
 import Button from '../../components/Button';
 
 //checkbox
@@ -32,8 +30,9 @@ import { contextUser } from '../../App';
 function Detail() {
     // Context
     const context = useContext(contextUser);
-    const { setOrder, setBag, user } = context;
+    const { setOrder, setBag, user, notifications, setNotifications } = context;
     const { id } = useParams();
+    console.log(notifications);
 
     let [searchParams] = useSearchParams();
     // Axios Data variable
@@ -42,7 +41,6 @@ function Detail() {
     const [colors, setColors] = useState([]);
     const [descriptionImage, setDescriptionImage] = useState('');
     const [sizes, setSizes] = useState([]);
-    const [isOpenToast, setIsOpenToast] = useState(false);
 
     useEffect(() => {
         axios
@@ -124,13 +122,15 @@ function Detail() {
                         },
                     })
                     .then((response) => {
+                        setNotifications((pre) => [
+                            ...pre,
+                            { id: uniqid(), type: 'success', description: 'Add item into bag successfully' },
+                        ]);
                         console.log(response);
                     })
                     .catch((error) => {
                         console.log(error);
                     });
-
-                setIsOpenToast(true);
             } else {
                 alert('Please Choose Color, Size, Quanity ');
             }
@@ -250,15 +250,6 @@ function Detail() {
             <div className={style.descriptionImage}>
                 <img src={descriptionImage} alt="description" />
             </div>
-
-            {isOpenToast && (
-                <Toast
-                    description="Hello anh em , you are"
-                    type="success"
-                    position="bottom-right"
-                    setIsOpenToast={setIsOpenToast}
-                />
-            )}
         </div>
     );
 }

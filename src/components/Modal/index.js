@@ -1,8 +1,35 @@
-import { style } from '@mui/system';
 import styles from './Modal.module.css';
-import Button from '../Button';
+import { useRef, useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 function Modal({ setIsOpen, title = '', dialogText = '', rightBtn, leftBtn }) {
+    const modalRef = useRef();
+    if (modalRef.current) {
+        modalRef.current.eventListener('keypress', (e) => {
+            console.log(e);
+        });
+    }
+    const myFunction = () => {
+        // your logic here
+        console.log(leftBtn.props.onClick());
+    };
+
+    useEffect(() => {
+        const keyDownHandler = (event) => {
+            console.log('User pressed: ', event.key);
+
+            if (event.key === 'Enter') {
+                // 👇️ your logic here
+                myFunction();
+            }
+        };
+
+        document.addEventListener('keydown', keyDownHandler);
+
+        return () => {
+            document.removeEventListener('keydown', keyDownHandler);
+        };
+    }, []);
+
     return (
         <>
             <div className={styles.darkBG}>
@@ -11,7 +38,7 @@ function Modal({ setIsOpen, title = '', dialogText = '', rightBtn, leftBtn }) {
                         <div className={styles.modalHeader}>
                             <h5 className={styles.heading}>{title}</h5>
                         </div>
-                        <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
+                        <button className={styles.closeBtn}>
                             <RiCloseLine style={{ marginBottom: '-3px' }} />
                         </button>
                         <div className={styles.modalContent}>{dialogText}</div>
