@@ -1,37 +1,33 @@
+import { useState, useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './Header.module.css';
 import clsx from 'clsx';
-import Button from '../../../components/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+// Mui Icon
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
-
-// Mui Icon
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
-import { useState, useContext, useEffect } from 'react';
-
-//mobile nav
+// mobile Mui
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Badge from '@mui/material/Badge';
 
 import ItemInBag from '../../sub/itemInBag/ItemInBag';
-
+import Button from '../../../components/Button';
 import { contextUser } from '../../../App';
-import axios from 'axios';
 
 const CustomizedTextField = styled(TextField)`
     height: 10px;
@@ -39,17 +35,20 @@ const CustomizedTextField = styled(TextField)`
 `;
 
 function Header() {
+    const cookies = new Cookies();
     const [search, setSearch] = useState('');
     const [visible, setVisible] = useState(false);
     const [searchItems, setSearchItems] = useState([]);
     const [drawer, setDrawer] = useState(false);
     const [openBag, setOpenBag] = useState(false);
+    const navigate = useNavigate();
 
+    //context
     const context = useContext(contextUser);
     const bag = context.bag;
-
-    const navigate = useNavigate();
     const user = context.user;
+    console.log(user);
+
     let bagNumber = bag.length;
 
     useEffect(() => {
@@ -71,26 +70,17 @@ function Header() {
     const handleDrawer = () => {
         setDrawer(true);
         setOpenBag(false);
-        // overlay.style.display = "block";
     };
 
     const handleDrawerCloser = () => {
         setDrawer(false);
         setOpenBag(false);
         setVisible(false);
-        // overlay.style.display = "none";
     };
-
-    const DrawerHeader = styled('div')(({ theme }) => ({
-        display: 'flex',
-        alignItems: 'center',
-        padding: theme.spacing(0, 1),
-    }));
 
     const handleOpenBag = () => {
         setOpenBag(true);
         setDrawer(false);
-        // overlay.style.display = "block";
     };
     return (
         <div className={clsx('grid wide', style.wrapper)}>
@@ -310,7 +300,10 @@ function Header() {
                                 open={drawer}
                             >
                                 <div className={style.closeMenuBlock}>
-                                    <Button secondary large style={{ minWidth: '50px' }} onClick={handleDrawerCloser}>
+                                    <div className={style.helloText}>
+                                        <h2>Hello {cookies.get('USER_INFO')?.name}!✌️</h2>
+                                    </div>
+                                    <Button secondary style={{ minWidth: '50px' }} onClick={handleDrawerCloser}>
                                         <ChevronLeftIcon style={{ fontSize: '24px', margin: 0, padding: 0 }} />
                                     </Button>
                                 </div>

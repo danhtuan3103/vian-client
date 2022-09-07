@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
-import { contextUser } from '../../App';
-import usePrompt from '../../hook/usePrompt';
-import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
 
+//Mui
 import style from './BagPayment.module.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,12 +16,12 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-
 import Paper from '@mui/material/Paper';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { styled } from '@mui/material/styles';
-import axios from 'axios';
 
+import { contextUser } from '../../App';
+import usePrompt from '../../hook/usePrompt';
 import Button from '../../components/Button';
 
 const CustomizedTextField = styled(TextField)`
@@ -35,11 +35,9 @@ const CustomizedTextareaAutosize = styled(TextareaAutosize)`
 `;
 
 function BagPayment() {
-    const context = useContext(contextUser);
-    const { bag, setBag, user, setOrder } = context;
     const cookies = new Cookies();
-    const navigate = useNavigate();
 
+    const context = useContext(contextUser);
     const [name, setName] = useState(cookies.get('USER_INFO')?.name);
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState(cookies.get('USER_INFO')?.email);
@@ -47,6 +45,9 @@ function BagPayment() {
     const [receiver, setReceiver] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [message, setMessage] = useState('');
+
+    const { bag, setBag, user, setOrder } = context;
+    const navigate = useNavigate();
 
     const total = bag.reduce((preItem, currentItem) => {
         return (preItem += currentItem.price * currentItem.selected_count);
@@ -96,6 +97,7 @@ function BagPayment() {
 
     const formIsDirty = true;
     usePrompt('Are you sure you want to redirect to another page ?', formIsDirty);
+
     return (
         <div>
             <h2>Payment All Item In Bag</h2>

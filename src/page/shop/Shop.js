@@ -8,7 +8,6 @@ import CardBlock from '../sub/card/Card';
 
 function Shop() {
     const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
     useEffect(() => {
         axios
             .get(`${process.env.REACT_APP_API_KEY}/item`)

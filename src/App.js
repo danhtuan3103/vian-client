@@ -79,7 +79,7 @@ function App() {
                         })}
                     </Routes>
                 </Suspense>
-                <ToastPortal position="top-left" autoClose={true} />
+                <ToastPortal position="top-right" autoClose={true} />
             </div>
         </contextUser.Provider>
     );

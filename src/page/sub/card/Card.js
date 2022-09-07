@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import uniqid from 'uniqid';
 import { contextUser } from '../../../App';
 import axios from 'axios';

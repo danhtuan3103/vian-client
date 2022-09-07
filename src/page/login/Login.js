@@ -1,6 +1,10 @@
+import { useState, useContext } from 'react';
 import style from './Login.module.css';
 import clsx from 'clsx';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
 
+// MUI
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,15 +14,11 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-import { useState, useContext, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
+
+// Own file
 import { contextUser } from '../../App.js';
 import Button from '../../components/Button';
-import Modal from '../../components/Modal';
-
-import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
@@ -26,31 +26,16 @@ const CustomizedTextField = styled(TextField)`
     margin: 8px;
     width: 320px;
 `;
-
-const CustomizedButton = styled(Button)`
-    margin: 8px;
-    color: var(--green);
-    border-color: var(--green);
-    width: 170px;
-    cursor: pointer;
-
-    :hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
-`;
 function Login({ prePath }) {
-    const context = useContext(contextUser);
-    const navigate = useNavigate();
-
-    const { setUser } = context;
-
     const [message, setMessage] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [showPassword, setShowPassword] = useState(false);
+
+    const context = useContext(contextUser);
+    const { setUser } = context;
+
+    const navigate = useNavigate();
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);

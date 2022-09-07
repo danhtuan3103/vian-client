@@ -6,8 +6,6 @@ import { BsFillCheckCircleFill, BsInfoCircleFill } from 'react-icons/bs';
 import { TiWarning } from 'react-icons/ti';
 import { MdDangerous } from 'react-icons/md';
 
-import { useRef } from 'react';
-
 const cx = classNames.bind(styles);
 
 const Toast = ({ type = 'info', description = '', handleDelete, id, autoClose, title }) => {

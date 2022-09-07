@@ -38,7 +38,7 @@ function Modal({ setIsOpen, title = '', dialogText = '', rightBtn, leftBtn }) {
                         <div className={styles.modalHeader}>
                             <h5 className={styles.heading}>{title}</h5>
                         </div>
-                        <button className={styles.closeBtn}>
+                        <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
                             <RiCloseLine style={{ marginBottom: '-3px' }} />
                         </button>
                         <div className={styles.modalContent}>{dialogText}</div>

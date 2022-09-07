@@ -1,49 +1,30 @@
+import { useState, useContext, useEffect, useMemo } from 'react';
 import style from './Payment.module.css';
 import clsx from 'clsx';
-import { useState, useContext, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import uniqid from 'uniqid';
+
 // UI material
 import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
+import Button from '../../components/Button';
 import { contextUser } from '../../App';
 import usePrompt from '../../hook/usePrompt';
-import axios from 'axios';
-import uniqid from 'uniqid';
-
-const CustomizedButton = styled(Button)`
-    margin: 8px;
-    color: var(--green);
-    border-color: var(--green);
-    width: 80%;
-    cursor: pointer;
-
-    :hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background-color: rgb(237, 227, 227, 0);
-    }
-`;
 
 function Payment() {
     const [bankName, setBankName] = useState('');
     const [check, setCheck] = useState(false);
-
-    const navigate = useNavigate();
+    const [infomation, setInfomation] = useState(false);
     const formIsDirty = true;
-    usePrompt('If you leave you will lose all entered information!!', formIsDirty);
-
     //context
     const context = useContext(contextUser);
-    const { orded, info } = context.order;
-    const { user } = context;
+    const { orded, info, user } = context;
 
-    const [infomation, setInfomation] = useState(false);
+    usePrompt('If you leave you will lose all entered information!!', formIsDirty);
 
     useEffect(() => {
         if (orded && info) {
@@ -134,15 +115,9 @@ function Payment() {
                     </AccordionSummary>
                 </Accordion>
                 <a className={style.woori} href="https://www.wooribank.com" target="_blank">
-                    <CustomizedButton
-                        id="outlined-basic"
-                        sx={{ width: 260, margin: '16px 0 0 0' }}
-                        size="small"
-                        label="Account"
-                        variant="outlined"
-                    >
+                    <Button outline small style={{ minWidth: '170px' }} to="https://www.wooribank.com">
                         Go to bank
-                    </CustomizedButton>
+                    </Button>
                 </a>
             </div>
 
@@ -170,17 +145,16 @@ function Payment() {
                             <p className={style.p}>결제정보를 확인하였으며, 구매진행에 동의합니다.</p>
                         </div>
 
-                        <CustomizedButton
-                            id="outlined-basic"
-                            size="small"
-                            label="Account"
-                            variant="outlined"
+                        <Button
+                            outline
+                            small
+                            style={{ minWidth: '170px' }}
                             onClick={() => {
                                 handlePayment();
                             }}
                         >
                             Payment
-                        </CustomizedButton>
+                        </Button>
                         <div className={style.line}></div>
                         <div className={style.text}>
                             <p className={style.p}>총 적립예정금액</p>
